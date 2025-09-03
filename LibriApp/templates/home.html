@@ -1,0 +1,140 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Home page 
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid ">
+  <marquee behavior="scroll" direction="left" scrollamount="30">
+{% if user.is_authenticated %}
+
+     <h2 class="text-center mt-2 bg-warning "> Welcome to LibriZone - The online library</h2>
+
+{% else %} 
+
+     <h2 class="text-center mt-2 bg-warning ">Login to LibriZone</h2>
+
+{% endif %}
+</marquee>
+</div>
+     <br><br>
+     <div class="container-fluid ">
+<style>
+  .side-img {
+    float: left;
+    height:1000px;
+    width:1000px;
+    margin-top:0px;
+    font-size: 10px;
+  
+  }
+</style>
+<p>
+  <img src="{% static 'images/online-education.jpg' %}" alt="My Image" class="side-img img-fluid my-4">
+</p>
+
+<p class="text-center fs-1 ">The one stop solution for all your reading needs.</p>
+<div class="text-center">
+        <h2 class="bg-success text-center text-white d-inline-block mt-4 my-2 pt-2"> Read your book </h2>
+   </div>
+   <div class="text-center my-4">
+            {% if user.is_authenticated %}
+              <a class="btn btn-outline-success btn-lg pt-2" href="{% url 'explore' %}">Read</a>
+            {% else %}
+   </div>
+
+    <div class="text-center">
+          <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" 
+                  data-bs-target="#staticBackdrop">
+            Read
+          </button>
+    </div>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" 
+               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Dear User</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Please login 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a type="button" class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                  <br style="clear: both;">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+<br style="clear: both;">
+      </div>
+     </div>
+   </div>
+{% endblock %}
+
+{% block maincontent %}
+ <div class="container-fluid ">
+<style>
+  .side-img {
+    float: left;
+    height:500px;
+    width: 500px;
+    margin-top:0px;
+    font-size: 10px;
+   
+  }
+</style>
+<p>
+ <img src="{% static 'images/write.png' %}" alt="My Image" class="side-img img-fluid my-4 rounded float-end">
+</p>
+<p class="text-center fs-1 my-4">Every writer dreams of writing a book that will touch people</p>
+   <div class="text-center">
+        <h2 class="bg-success text-center text-white d-inline-block mt-4 my-2">Upload your book</h2>
+   </div>
+   <div class="text-center my-4">
+            {% if user.is_authenticated %}
+              <a class="btn btn-outline-success btn-lg" href="{% url 'upload' %}">Upload</a>
+            {% else %}
+   </div>
+
+    <div class="text-center">
+          <button type="button" class="btn btn-outline-success btn-lg" data-bs-toggle="modal" 
+                  data-bs-target="#staticBackdrop">
+            upload
+          </button>
+    </div>
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" 
+               data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" 
+               aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Dear User</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Please login 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a type="button" class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                  <br style="clear: both;">
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+{% endblock %}

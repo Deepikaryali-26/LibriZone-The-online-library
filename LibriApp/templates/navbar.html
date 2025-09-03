@@ -1,0 +1,47 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+<nav class="navbar navbar-expand-lg bg-success mt-2">
+  <div class="container-fluid">
+    <a class="navbar-brand text-warning fw-bold fst-Playfair" href="#">LibriZone</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white " aria-current="page" href="{% url 'home'%}">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link  text-white" href="{% url 'explore'%}">Explore</a>
+        </li>
+        {% else %}
+    {% endif %}
+        <li class="nav-item">
+          <a class="nav-link  text-white" href="{% url 'Contact'%}">Contact us</a>
+        </li>
+      </ul>
+    </div>
+   {% if user.is_authenticated %}
+  <ul class="navbar-nav align-items-center">
+    <li class="nav-item d-flex align-items-center">
+      <img src="https://ui-avatars.com/api/?name={{ user.username|urlencode }}&background=random&size=64&rounded=true"
+     width="32" height="32" class="rounded-circle" alt="{{ user.username }}">
+      <span class="nav-link px-2 text-white">{{ user.username }}</span>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href=""></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'signout' %}">Logout</a>
+    </li>
+  </ul>
+{% else %}
+  <ul class="navbar-nav align-items-center">
+    <li class="nav-item">
+      <a class="nav-link text-white" href="{% url 'login' %}">SignUp/Login</a>
+    </li>
+  </ul>
+{% endif %}
+</nav>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
